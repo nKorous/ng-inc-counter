@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TimeInterval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng-inc-counter';
+  counter: number = 0
+
+  st: any = setInterval(() => this.counter++, 1000)
+
+  ngOnInit() {
+    this.st()
+  }
+
+  ngOnDestroy(){
+    clearInterval(this.st)
+    this.counter = 0
+  }
+
+
 }
